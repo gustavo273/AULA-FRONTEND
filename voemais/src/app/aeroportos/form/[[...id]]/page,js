@@ -1,6 +1,7 @@
 'use client'
 
 import Pagina from "@/app/components/Pagina";
+import AeroportoValidator from "@/validators/AeroportoValidator";
 import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -31,13 +32,18 @@ export default function Page({ params }) {
         <Pagina titulo="Aeroporto">
             <Formik
                 initialValues={aeroporto}
+                validationSchema={AeroportoValidator}
                 onSubmit={values => salvar(values)}
+                
             >
                 {({
                     values,
                     handleChange,
                     handleSubmit,
-                }) => (
+                    errors,
+                    
+                }) => {
+                    return (
                     <Form>
                         <Form.Group className="mb-3" controlId="nome">
                             <Form.Label>Nome</Form.Label>
@@ -46,7 +52,10 @@ export default function Page({ params }) {
                                 name="nome"
                                 value={values.nome}
                                 onChange={handleChange('nome')}
-                            />
+                                isInvalid={errors.nome}
+                                  /> <Form.Control.Feedback type="invalid">
+                                  {errors.nome}
+                                </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="sigla">
                             <Form.Label>Sigla</Form.Label>
@@ -55,7 +64,10 @@ export default function Page({ params }) {
                                 name="sigla"
                                 value={values.sigla}
                                 onChange={handleChange('sigla')}
-                            />
+                                isInvalid={errors.sigla}
+                                /> <Form.Control.Feedback type="invalid">
+                                {errors.nome}
+                              </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="uf">
                             <Form.Label>UF</Form.Label>
@@ -64,7 +76,10 @@ export default function Page({ params }) {
                                 name="uf"
                                 value={values.uf}
                                 onChange={handleChange('uf')}
-                            />
+                                isInvalid={errors.nome}
+                                /> <Form.Control.Feedback type="invalid">
+                                {errors.uf}
+                              </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="cidade">
                             <Form.Label>Cidade</Form.Label>
@@ -73,7 +88,10 @@ export default function Page({ params }) {
                                 name="cidade"
                                 value={values.cidade}
                                 onChange={handleChange('cidade')}
-                            />
+                                isInvalid={errors.nome}
+                                /> <Form.Control.Feedback type="invalid">
+                                {errors.cidade}
+                              </Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="pais">
                             <Form.Label>País</Form.Label>
@@ -82,7 +100,10 @@ export default function Page({ params }) {
                                 name="pais"
                                 value={values.pais}
                                 onChange={handleChange('pais')}
-                            />
+                                isInvalid={errors.nome}
+                                /> <Form.Control.Feedback type="invalid">
+                                {errors.pais}
+                              </Form.Control.Feedback>
                         </Form.Group>
                         <div className="text-center">
                             <Button onClick={handleSubmit} variant="success">
@@ -93,7 +114,7 @@ export default function Page({ params }) {
                             </Link>
                         </div>
                     </Form>
-                )}
+                )}}
             </Formik>
         </Pagina>
     );
