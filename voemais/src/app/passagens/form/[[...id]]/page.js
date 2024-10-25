@@ -104,7 +104,7 @@ export default function Page({ params }) {
                                     <FaCheck /> Salvar
                                 </Button>
                                 <Link
-                                    href="/passagens"
+                                    href="/passagem"
                                     className="btn btn-danger ms-2"
                                 >
                                     <IoIosArrowRoundBack /> Voltar
